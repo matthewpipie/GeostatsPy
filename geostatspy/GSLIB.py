@@ -1630,15 +1630,25 @@ def cosgsim_uncond(nreal, nx, ny, hsiz, seed, var, sec, correl, output_file):
 def sample(array, xmin, ymin, step, name, df, xcol, ycol):
     """Sample 2D model with provided X and Y and append to DataFrame.
 
-    :param array: ndarray
-    :param xmin: TODO
-    :param ymin: TODO
-    :param step: TODO
-    :param name: TODO
-    :param df: dataframe
-    :param xcol: TODO
-    :param ycol: TODO
-    :return: dataframe
+    :param array: The 2D array to sample from. 
+array[ny-1,0] refers to coordinates (xmin, ymin)
+    :type array: ndarray
+    :param xmin: The x coordinate to center array with
+    :type xmin: float
+    :param ymin: The y coordinate to center array with
+    :type ymin: float
+    :param step: The smallest step in df's coordinate system, used to translate to indices in array
+    :type step: float
+    :param name: The name of the new DF column (output)
+    :type name: str
+    :param df: The dataframe containing coordinates
+    :type df: DataFrame
+    :param xcol: The index of the column representing x coordinates in df
+    :type xcol: int
+    :param ycol: The index of the column representing y coordinates in df
+    :type ycol: int
+    :return: The dataframe object passed in, with the added column `name`
+    :type return: DataFrame
     """
     if array.ndim != 2:
         raise ValueError("Array must be 2D")
